@@ -69,3 +69,7 @@ All reported numbers are tied to the named checkpoint, protocol, seed, and contr
 ## License and attribution
 
 The upstream MiniCPM-o 4.5 license and model terms apply to the base-derived weights. CyberFly documentation and original runtime additions are distributed only under the terms stated in `NOTICE.md`; do not assume that a downstream license supersedes upstream obligations. Cite MiniCPM-o 4.5 and the CyberFly release together with MaleCNS/flybrain, FlyBody, FlyGym, and MuJoCo when those components are used.
+
+## Voice asset note
+
+This baked-only artifact intentionally contains model weights, tokenizer, configuration, provenance, and checksums. It does **not** include MiniCPM's optional `assets/token2wav/` speech synthesis files (`flow.pt`, `hift.pt`, `campplus.onnx`, or `speech_tokenizer_v2_25hz.onnx`). Text and multimodal encoding remain the release focus. Voice generation requires those assets from the upstream MiniCPM distribution and is not available from this repository alone.
