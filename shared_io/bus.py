@@ -83,8 +83,8 @@ class SharedIOBus:
                 legacy_general=None, legacy_neural_drive=None, visual_input_enabled=True, body_packet=None):
         if self.pending is not None:
             raise RuntimeError('The previous shared event has not finished')
-        from .manage import start
-        start(wait=True)
+        # The public package never starts a private training/model service.
+        # The caller must provide an already-running local shared endpoint.
         self.sequence += 1
         event_id = uuid.uuid4().hex
         output = ROOT / 'artifacts/shared_io' / event_id
