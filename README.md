@@ -24,7 +24,7 @@ Use a supported Python environment and install the pinned public dependencies:
 python -m pip install -r requirements-lab.lock.txt
 ```
 
-The lock file contains the lab runtime dependencies. MuJoCo, FlyGym, GPU runtimes, and a MiniCPM-compatible serving backend may require platform-specific installation. The runtime does not download a model or start a service implicitly.
+The lock file contains the lab runtime dependencies. MuJoCo, FlyGym, GPU runtimes, and a MiniCPM-compatible serving backend may require platform-specific installation. This repository does not include a model server, training stack, or automatic model downloader; start your approved local backend separately.
 
 ## Point the runtime at the baked model
 
@@ -37,7 +37,7 @@ export MINICPM_MODEL=CyberFly-01
 unset MINICPM_API_KEY  # set it only when the local gateway requires one
 ```
 
-The model repository supplies the baked checkpoint, tokenizer/configuration, provenance, and SHA-256 manifest. Load it as a normal MiniCPM-o checkpoint. Do not pass a PEFT adapter path and do not expect adapter files in the release.
+The model repository supplies the baked checkpoint, tokenizer/configuration, provenance, and SHA-256 manifest. Load it as a normal MiniCPM-o checkpoint. Do not pass a PEFT adapter path and do not expect adapter files in the release. The baked artifact does not include MiniCPM ssets/token2wav/ files (low.pt, hift.pt, campplus.onnx, speech_tokenizer_v2_25hz.onnx); native speech requires those upstream assets installed separately.
 
 ## Minimal request
 
