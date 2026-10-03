@@ -31,15 +31,63 @@ def digest(path):
     return h.hexdigest()
 
 
+class FrozenStimulus:
+    """Bookkeeping for external pulses without exposing plasticity controls."""
+
+    enabled = False
+
+    def __init__(self):
+        self.events = 0
+        self.until = 0
+        self.last_steps = 0
+        self.delivered_steps = 0
+        self.cancelled_steps = 0
+        self.terminal_events = 0
+
+    def telemetry(self):
+        return {
+            "enabled": False,
+            "plasticity": False,
+            "external_aversive_events": self.events,
+            "delivered_steps": self.delivered_steps,
+            "last_steps": self.last_steps,
+            "cancelled_steps": self.cancelled_steps,
+            "pending_steps": 0,
+            "stimulus_source": "engineered_external_event",
+        }
+
+    def state(self):
+        return {
+            "enabled": False,
+            "events": self.events,
+            "until": self.until,
+            "last_steps": self.last_steps,
+            "delivered_steps": self.delivered_steps,
+            "cancelled_steps": self.cancelled_steps,
+            "terminal_events": self.terminal_events,
+        }
+
+    def restore(self, value):
+        if not isinstance(value, dict) or value.get("enabled", False):
+            raise ValueError("Only frozen runtime checkpoints are supported")
+        for key in ("events", "until", "last_steps", "delivered_steps", "cancelled_steps", "terminal_events"):
+            number = value.get(key, 0)
+            if type(number) is not int or number < 0:
+                raise ValueError("Invalid frozen stimulus checkpoint")
+            setattr(self, key, number)
+
+
 class Worker(FullBrainIO):
     def __init__(self, learning, event_log):
         import numpy as np
         from doom_learning_v6.calibration import calibrated_brain
         from doom.engine import NeuralControls
-        from doom.training import DamageTraining
 
-        if type(learning) is not bool:
-            raise ValueError("learning must be bool")
+        # The public runtime is inference-only.  Training, plasticity and
+        # optimizer state stay in the private research workspace; callers may
+        # not enable them through this worker protocol.
+        if learning is not False:
+            raise ValueError("The public worker is frozen; set learning=false")
         self.np = np
         self.brain = calibrated_brain()
         self.manifest = json.loads((REPO / "outputs/doom/malecns_v1/manifest.json").read_text())
@@ -49,7 +97,7 @@ class Worker(FullBrainIO):
         self.controls = NeuralControls(readouts, mode="bci")
         # Reuse its exact pulse splitting and telemetry. We NEVER call observe()
         # with invented game health: explicit external events schedule the pulse.
-        self.training = DamageTraining(self.brain, learning)
+        self.training = FrozenStimulus()
         self._identify_input_ports()
         self.drive_state = self._empty_drive_state()
         self.input_steps = 0
@@ -151,9 +199,8 @@ class Worker(FullBrainIO):
 
     def learning(self):
         data = self.training.telemetry()
-        # The upstream name damage_events must not misrepresent scenario events
-        # as genuine Doom damage in the cross-scenario API.
-        data["external_aversive_events"] = data.pop("damage_events")
+        # Keep the event name explicit: it is an engineered external pulse,
+        # never a reward signal or a learned update.
         data["stimulus_source"] = "engineered_external_event"
         return data
 
@@ -396,11 +443,8 @@ class Worker(FullBrainIO):
             return self.reset(request.get("preserve_weights", True))
         if operation == "set_learning":
             enabled = request["enabled"]
-            if type(enabled) is not bool:
-                raise ValueError("enabled must be bool")
-            self.training.enabled = enabled
-            self.brain.weights_frozen = not enabled
-            self.record("learning_changed", enabled=enabled)
+            if enabled is not False:
+                raise ValueError("The public worker is frozen; learning cannot be enabled")
             return self.describe()
         if operation == "save":
             return self.save(request["path"])

@@ -27,7 +27,7 @@ NEURAL_LINK_SPEC = {
     "supports_3d_feedback": True,
     "task_updates": {"neural_drive": "retina_left, retina_right, sugar: normalized 0..1 semantic context",
                      "general_stimulation": "Fine-group, macro-group or original neuron-ID bounded currents; next neural step"},
-    "limitations": ["PPO trains a neural-input adapter; synaptic plasticity is a separate optional mode",
+    "limitations": ["The public runtime is frozen; no PPO or synaptic training is exposed",
                    "Body camera projection, sensory currents and motor decoder are engineering interfaces",
                    "Sugar input is not established positive reinforcement", "No automatic terminal punishment: explicit manual aversion only"],
 }
@@ -68,8 +68,8 @@ class FlyNeuralLink(gym.Env):
                  max_episode_steps=150, render_mode="rgb_array", visual_input_enabled=True,
                  motor_readout_checkpoint=None, **body_kwargs):
         super().__init__()
-        if type(learning) is not bool:
-            raise ValueError("learning must be a boolean.")
+        if learning is not False:
+            raise ValueError("The public runtime is frozen; learning must be false.")
         self.scenario_spec = deepcopy(self.SCENARIO_SPEC)
         self.render_mode = render_mode
         self.action_space = spaces.Box(-1.0, 1.0, (3,), dtype=np.float32)
@@ -126,15 +126,10 @@ class FlyNeuralLink(gym.Env):
         return self._pending_aversive
 
     def set_learning(self, enabled):
-        if type(enabled) is not bool:
-            raise ValueError("learning must be a boolean.")
-        self.brain_description = compact_description(self.brain.set_learning(enabled))
-        self.learning = enabled
-        self._brain_vector[-1] = float(enabled)
-        if not enabled and self._pending_aversive:
-            self._pending_aversive = False
-            self._cancelled_aversive += 1
-        return {"brain_learning": enabled, "cancelled_manual_events": self._cancelled_aversive}
+        if enabled is not False:
+            raise ValueError("The public runtime is frozen; learning cannot be enabled.")
+        self.brain_description = compact_description(self.brain.set_learning(False))
+        return {"brain_learning": False, "cancelled_manual_events": self._cancelled_aversive}
 
     def queue_aversive(self):
         """One explicit event, delivered on the next real neural interval.
@@ -143,8 +138,6 @@ class FlyNeuralLink(gym.Env):
         before delivery reports cancellation in task_state and the brain itself
         logs any already-scheduled pulse cancelled by its reset.
         """
-        if not self.learning:
-            raise ValueError("Enable neural plasticity before submitting an aversive event.")
         if not self._started or self._done:
             raise ValueError("Manual aversion requires an active, unfinished episode; reset first.")
         if self._pending_aversive:
@@ -281,18 +274,11 @@ class FlyNeuralLink(gym.Env):
                 "effect": "Legacy retinal image projection enabled" if enabled else "Legacy retinal image projection bypassed; explicit currents and original tonic dynamics remain"}
 
     def set_motor_readout(self, checkpoint):
-        """Select an explicitly trained physical-body adapter; default stays BCI."""
+        """Keep the fixed BCI decoder; private learned adapters are not public."""
         if checkpoint is None:
             self.motor_readout, self._motor_trace = None, None
             return {"mode": "rule_bci", "default": True}
-        if self.scenario_spec.get("embodiment") != "physical_3d" or self.body.action_space.shape != (2,):
-            raise ValueError("This learned motor readout supports only the two-command MuJoCo body")
-        from shared_io.motor_readout import MotorReadout
-        candidate = MotorReadout.load(checkpoint)
-        if candidate.optimizer_updates < 1:
-            raise ValueError("Train this motor readout before applying it to the body")
-        self.motor_readout, self._motor_trace = candidate, None
-        return candidate.describe()
+        raise ValueError("Private learned motor adapters are not part of the public runtime")
 
     def _decode_brain_to_body(self, summary):
         if self.motor_readout is None:

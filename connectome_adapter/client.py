@@ -35,10 +35,10 @@ class ConnectomeClient:
     silently translated into neural punishment or dopamine stimulation.
     """
 
-    def __init__(self, *, learning=True, timeout=120.0, checkpoint=None,
+    def __init__(self, *, learning=False, timeout=120.0, checkpoint=None,
                  python=DEFAULT_PYTHON, log_dir=None):
-        if type(learning) is not bool or not 0 < timeout <= 600:
-            raise ValueError("learning must be bool and timeout within (0, 600]")
+        if learning is not False or not 0 < timeout <= 600:
+            raise ValueError("The public connectome client is frozen; learning must be false")
         python = Path(python).absolute()
         if not python.is_file():
             raise FileNotFoundError(f"Brain worker interpreter is missing: {python}")
@@ -260,7 +260,9 @@ class ConnectomeClient:
         return self._request("reset", preserve_weights=preserve_weights)
 
     def set_learning(self, enabled):
-        return self._request("set_learning", enabled=enabled)
+        if enabled is not False:
+            raise ValueError("The public connectome client is frozen; learning cannot be enabled")
+        return self.describe()
 
     def save(self, path):
         return self._request("save", path=str(Path(path).resolve()))

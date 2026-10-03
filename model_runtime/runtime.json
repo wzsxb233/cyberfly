@@ -1,9 +1,0 @@
-{
-  "transport": "openai",
-  "base_url": "http://127.0.0.1:18645/v1",
-  "model": "MiniCPM-o-4.5-Q4_K_M",
-  "status": "stopped",
-  "gpu_index": 2,
-  "weights_dir": "/root/.cache/cyberfly/minicpm-runtime/models",
-  "verification": "Only this runtime's recorded and identity-checked processes were stopped."
-}
