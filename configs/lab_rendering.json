@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "backend": "d3d12",
+  "gpu_index": 0,
+  "gpu_uuid": "GPU-7c819eea-a864-1b0a-90b8-64854f446945",
+  "frame_size": [640, 480],
+  "quality": "original_unchanged",
+  "measured_peak_added_mib": 1104,
+  "safety_margin_mib": 1024,
+  "validation": {
+    "path": "artifacts/inference_performance/render-backend/full2048-1c7a7864257c/evidence.json",
+    "sha256": "b0555415ab8f84d8b1351af1fe1e15d774636bb17869ac866b6d2d522f27c224"
+  },
+  "visual_review": {
+    "path": "artifacts/inference_performance/render-backend/full2048-1c7a7864257c/review.json",
+    "sha256": "4edb9697bd50759eb455b17587f2e3e236d840f29b10e201bbefc8a670d77984",
+    "accepted_by_project_owner": true
+  },
+  "notes": "Main Lab only; Fleet keeps its CPU_ENV. GPU0 UUID is an admission/verification target, not a Mesa UUID selector. Preserve CUDA visibility. Fall back to explicit software if headroom or validation fails."
+}

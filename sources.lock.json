@@ -1,0 +1,22 @@
+{
+  "MiniCPM": {
+    "url": "https://github.com/OpenBMB/MiniCPM-V.git",
+    "commit": "6ada8e8ef5e2979670fc94406f02b87c3c7e7ee0"
+  },
+  "doomfly": {
+    "url": "https://github.com/nftechie/doomfly.git",
+    "commit": "71ecf53d78eaffaf1a57ed7b0ccf5d458abc9f33"
+  },
+  "flybody": {
+    "url": "https://github.com/TuragaLab/flybody.git",
+    "commit": "d015e9bfe441bd90ae431bac24c55cb74bdbce26"
+  },
+  "flybrain": {
+    "url": "https://github.com/snedea/flybrain.git",
+    "commit": "9191824d17871b7851645782d53d23f213ddb938"
+  },
+  "flygym": {
+    "url": "https://github.com/NeLy-EPFL/flygym.git",
+    "commit": "38c8ec61034cd59bc5ba0de20688d4a3c0000d60"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "method": "ppo",
+  "scenario": {"name": "brain_sandbox", "env_kwargs": {"max_episode_steps": 100, "learning": false}, "task": {"target_rate_hz": 2.0}},
+  "steps": 10000,
+  "n_envs": 1,
+  "rollout_steps": 128,
+  "eval_episodes": 5,
+  "seed": 42
+}

@@ -1,0 +1,19 @@
+diff --git a/tools/omni/omni.cpp b/tools/omni/omni.cpp
+index 3e029c6..421e828 100644
+--- a/tools/omni/omni.cpp
++++ b/tools/omni/omni.cpp
+@@ -5009,6 +5009,14 @@ void llm_thread_func(omni_context* ctx_omni, common_params* params){
+                     sliding_window_register_unit_start(ctx_omni);
+                 }
+                 
++                // Preserve accompanying instructions/state for turn-based
++                // image/audio input. The modality branches below used to
++                // discard user_text whenever media embeddings were present.
++                if (!ctx_omni->duplex_mode && !embeds->user_text.empty() &&
++                    (!embeds->vision_embed.empty() || !embeds->audio_embed.empty())) {
++                    eval_string(ctx_omni, params, embeds->user_text.c_str(), params->n_batch, &ctx_omni->n_past, false);
++                }
++
+                 // ========== 子分支1：处理包含视觉嵌入的数据 ==========
+                 // 🔧 [高清模式] vision_embed 现在是二维 vector: [0]=overview, [1..n]=slices
+                 if (embeds->vision_embed.size() > 0){

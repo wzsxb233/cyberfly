@@ -1,0 +1,2 @@
+# HTTP / modelbest modes use only the Python standard library.
+websockets>=15,<16

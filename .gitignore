@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+artifacts/
+model_cache/
+*.wav
+*.mp4
+*.npz
+*.pt
+*.safetensors

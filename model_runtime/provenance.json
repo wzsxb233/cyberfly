@@ -1,0 +1,21 @@
+{
+  "source_repo": "https://github.com/tc-mb/llama.cpp-omni",
+  "source_revision": "64d092c60db4b4ee45768476bd752f03fdcc98ea",
+  "weights_repo": "https://huggingface.co/openbmb/MiniCPM-o-4_5-gguf",
+  "weights_revision": "db25077c33951fe163b42986fba0132e279872a2",
+  "weights_bytes": 8872297088,
+  "integrity": "All 10 files verified against pinned Hugging Face LFS SHA256 hashes",
+  "download_mirror": "https://modelscope.cn/models/OpenBMB/MiniCPM-o-4_5-gguf",
+  "local_patch": "localhost-bind.patch: honor params.hostname instead of hardcoded 0.0.0.0",
+  "cuda": "12.9.41",
+  "cuda_architectures": [
+    86
+  ],
+  "gpu_index": 2,
+  "gpu_model": "NVIDIA GeForce RTX 3090 24GB",
+  "http_endpoint": "http://127.0.0.1:18645/v1",
+  "backend_endpoint": "ws://127.0.0.1:18646/backend",
+  "source_license": "MIT",
+  "weights_license": "Apache-2.0",
+  "voice_runtime": "Weights present; audio/TTS not tested; gateway currently text and images only"
+}

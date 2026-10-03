@@ -1,0 +1,9 @@
+{
+  "method": "ppo",
+  "scenario": {"name": "fly_neural_link", "env_kwargs": {"max_episode_steps": 150, "learning": false}, "task": {"neural_drive": {"retina_left": 0.2, "retina_right": 0.2, "sugar": 0.1}}},
+  "steps": 10000,
+  "n_envs": 1,
+  "rollout_steps": 128,
+  "eval_episodes": 5,
+  "seed": 42
+}

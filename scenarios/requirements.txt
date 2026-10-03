@@ -1,0 +1,3 @@
+# Install after rl/requirements.lock.txt. These additions do not change Torch or MuJoCo.
+vizdoom==1.3.0
+pygame-ce==2.5.8
