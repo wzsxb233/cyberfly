@@ -1,44 +1,42 @@
-# CyberFly-01 发布文案
+# CyberFly-01 发布文案 / Launch Copy
 
-## 标题
-
-CyberFly-01：第一支赛博果蝇
-
-## 正文
+## CyberFly-01：第一支赛博果蝇 / The first cyber fly
 
 我们发布 CyberFly-01。
 
+We are releasing CyberFly-01.
+
 它把 MiniCPM-o 4.5 的多模态模型、成年雄性果蝇的真实连接组数据、可复现的神经动力学仿真和 MuJoCo 身体物理，放进同一条研究链路。
 
-输入一段文字、图像或音频。模型产生隐藏状态，隐藏状态进入 17,336 个感觉入口，经过 166,700 个神经元和 25,582,938 条聚合有向边，再从 2,129 个运动与下行出口进入身体读出。
+It connects MiniCPM-o 4.5, a complete male fruit-fly connectome implementation, reproducible neural dynamics and MuJoCo body physics in one inspectable research path.
 
-最终我们看到的不是一张静态图片，而是关节、翅膀、接触、速度和身体姿态的变化。
+输入文字、图像或音频，模型产生隐藏状态；隐藏状态进入 17,336 个感觉入口，经过 166,700 个神经元和 25,582,938 条聚合有向边，再从 2,129 个运动与下行出口进入身体读出。
 
-这不是把活体大脑搬进电脑，也不是意识证明。它是一个可以记录、干预、重放和对照的工程系统：模型信号、神经状态和身体运动被放在同一条可检查路径上。
+Text, image or audio becomes a measurable hidden state. It enters 17,336 sensory entries, passes through 166,700 neurons and 25,582,938 aggregate directed edges, then reaches the body through 2,129 motor or descending outputs.
 
-CyberFly-01 的公开模型是 baked 版本。LoRA 已经合并进 MiniCPM-o 4.5，发布仓库不包含独立 adapter。普通运行代码、模型卡和技术报告同步公开。
+最后看到的是关节、翅膀、接触、速度和身体姿态的变化。
 
-我们希望它开启的不是“机器是否有意识”的猜谜，而是一个更具体的问题：
+The result is visible in joints, wings, contact, velocity and body attitude.
 
-当语言、神经计算和身体物理真正连接起来时，我们能否逐层看见一个行为是如何产生的？
+这不是把活体大脑搬进电脑，也不是意识证明。它是一个可以记录、干预、重放和对照的工程系统。
 
-这就是第一支赛博果蝇。
+This is not a wet-brain reconstruction or a consciousness claim. It is an observable, intervenable and replayable engineering system.
 
-## 发布链接
+公开模型是 baked 版本：LoRA 已经合并进 MiniCPM-o 4.5，发布仓库不包含独立 adapter。
 
-- 模型：<https://huggingface.co/GizzAI/CyberFly-01>
-- 模型：<https://modelscope.cn/models/GizzAI/CyberFly-01>
-- 运行代码：<https://github.com/wzsxb233/cyberfly>
-- 技术报告：<https://github.com/wzsxb233/cyberfly/blob/main/TECH_REPORT.md>
-- 模型卡：<https://github.com/wzsxb233/cyberfly/blob/main/MODEL_CARD.md>
-- 论文 draft：<https://github.com/wzsxb233/cyberfly/blob/main/FRUITFLY_RESEARCH.md>
+The public model is baked: the LoRA update is merged into MiniCPM-o 4.5, and no standalone adapter is released.
 
-## 视频
+## Links / 链接
 
-- 主宣传片：`artifacts/video_demo/cyberfly_system_master_promo.mp4`
-- 完整能力演示：`artifacts/video_demo/cyberfly_full_capability_demo.mp4`
-- 内部运算演示：`artifacts/video_demo/cyberfly_internal_computation_release.mp4`
+- Model / 模型: <https://huggingface.co/GizzAI/CyberFly-01>
+- Model / 模型: <https://modelscope.cn/models/GizzAI/CyberFly-01>
+- Runtime / 运行代码: <https://github.com/wzsxb233/cyberfly>
+- Technical report / 技术报告: <https://github.com/wzsxb233/cyberfly/blob/main/TECH_REPORT.md> · <https://github.com/wzsxb233/cyberfly/blob/main/TECH_REPORT.zh-CN.md>
+- Model card / 模型卡: <https://github.com/wzsxb233/cyberfly/blob/main/MODEL_CARD.md> · <https://github.com/wzsxb233/cyberfly/blob/main/MODEL_CARD.zh-CN.md>
+- Paper draft / 论文草稿: <https://github.com/wzsxb233/cyberfly/blob/main/PAPER_DRAFT.md>
 
-## 说明
+## Videos / 视频
 
-模型仓只发布 baked 权重、配置、tokenizer、模型卡、技术报告和校验文件；不发布独立 LoRA、训练代码、训练数据或私有实验资产。
+- Master promo / 主宣传片: `cyberfly_system_master_promo_bilingual.mp4`
+- Full capability demo / 完整能力演示: `cyberfly_full_capability_demo_bilingual.mp4`
+- Internal computation / 内部运算演示: `cyberfly_internal_computation_release_bilingual.mp4`

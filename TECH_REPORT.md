@@ -1,3 +1,5 @@
+[中文 / Chinese](TECH_REPORT.zh-CN.md) · English
+
 # CyberFly-01: MiniCPM-o 4.5 × MaleCNS × MuJoCo
 
 ## Technical report — pre-release v0.1 (2026-10-04)
@@ -88,3 +90,4 @@ The runtime package intentionally omits training code, private datasets, large i
 ### Citation
 
 If you use CyberFly-01, cite the release repository and model revision together with the upstream projects. The upstream MiniCPM-o 4.5, MaleCNS/flybrain, FlyBody, FlyGym, and MuJoCo licenses and attribution requirements remain applicable. See `NOTICE.md` before redistribution.
+

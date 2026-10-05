@@ -1,3 +1,5 @@
+[中文 / Chinese](MODEL_CARD.zh-CN.md) · English
+
 # CyberFly-01 Baked Model Card
 
 ## Model summary
@@ -73,3 +75,4 @@ The upstream MiniCPM-o 4.5 license and model terms apply to the base-derived wei
 ## Voice asset note
 
 This baked-only artifact intentionally contains model weights, tokenizer, configuration, provenance, and checksums. It does **not** include MiniCPM's optional `assets/token2wav/` speech synthesis files (`flow.pt`, `hift.pt`, `campplus.onnx`, or `speech_tokenizer_v2_25hz.onnx`). Text and multimodal encoding remain the release focus. Voice generation requires those assets from the upstream MiniCPM distribution and is not available from this repository alone.
+

@@ -1,3 +1,5 @@
+[中文 / Chinese](README.zh-CN.md) · English
+
 # CyberFly-01 Runtime
 
 CyberFly-01 connects a baked MiniCPM-o 4.5 checkpoint to an explicit MaleCNS connectome interface and an articulated MuJoCo fly body. This repository contains the **ordinary runtime code and protocol documentation**. It does not contain the training stack, private datasets, internal experiment artifacts, or a separate LoRA adapter.
@@ -93,3 +95,4 @@ The project demonstrates an observable and replayable model → explicit neural 
 ## Attribution
 
 CyberFly uses upstream MiniCPM-o 4.5, MaleCNS/flybrain, FlyBody, FlyGym, and MuJoCo components. Their licenses and attribution requirements remain in force; see `NOTICE.md`.
+
