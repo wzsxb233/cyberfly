@@ -1,21 +1,9 @@
-# CyberFly-01 Notices
+# CyberFly-01 licensing notice
 
-This release combines original CyberFly runtime/documentation with upstream model, connectome, physics, and simulation components. Keep the notices below with any redistribution and check each upstream repository for the current license text and terms.
+CyberFly original runtime glue, documentation, launch materials, and CyberFly baked derivative weights are distributed under the **Gizzai Sense License Version 1.1** in `LICENSE`, including its Additional Terms. The license is not Apache-2.0 alone and includes the annual-revenue threshold, attribution, derivative, use, termination and governing-law terms.
 
-## Upstream components
+The baked checkpoint is a derivative of OpenBMB MiniCPM-o 4.5. The upstream MiniCPM portions, source code, tokenizer assets and any separately obtained upstream auxiliary files remain subject to their upstream licenses and terms. This notice does not override those upstream rights or restrictions. Where the Gizzai Sense License governs the CyberFly derivative, it governs the derivative additions and merged model distribution.
 
-- **MiniCPM-o 4.5** — OpenBMB, `openbmb/MiniCPM-o 4_5` and the associated MiniCPM repositories. The base-derived baked model remains subject to the upstream model license and usage terms. Provenance is pinned in the technical report and model manifest.
-- **MiniCPM source** — OpenBMB, source revision recorded in `sources.lock.json`.
-- **MaleCNS / flybrain** — the connectome implementation and annotations from `snedea/flybrain`; use the license and data terms supplied by that project.
-- **FlyBody** — TuragaLab, `TuragaLab/flybody`; retain its license and attribution.
-- **FlyGym** — NeLy-EPFL, `NeLy-EPFL/flygym`; retain its license and attribution.
-- **MuJoCo** — DeepMind / MuJoCo contributors; retain the license and notices of the installed version.
-- **ViZDoom / DoomFly (optional scenarios)** — retain the notices and license of the installed upstream packages when those scenarios are used.
+MaleCNS/flybrain, FlyBody, FlyGym, MuJoCo and optional ViZDoom/DoomFly components retain their own licenses, data terms and attribution requirements. See `sources.lock.json` and the upstream repositories before redistribution.
 
-Exact upstream URLs and pinned source revisions are recorded in `sources.lock.json`. This file is a routing notice, not a replacement for any upstream LICENSE file.
-
-## CyberFly additions
-
-The original CyberFly runtime glue, protocol documentation, configuration examples, and report text in this repository are the CyberFly project additions. No standalone LoRA adapter, optimizer state, private dataset, or unreleased training artifact is included in this public runtime release.
-
-Before publishing a binary or model mirror, include the corresponding upstream model card and license text where the upstream terms require it. Do not imply that this notice grants rights to upstream weights, datasets, or simulator assets.
+Commercial licensing and academic collaboration: dengyicun@gizzai.com
